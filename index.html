@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Themed Birthday Greeting</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page" id="page1">
+            <h1>Happy Birthday!</h1>
+            <p>Wishing you a day filled with love, joy, and amazing surprises!</p>
+        </div>
+        <div class="page" id="page2" style="display:none;">
+            <h1>Cool Messages</h1>
+            <p class="cool-text">You are a champion, keep shining!</p>
+            <p class="cool-text">Your adventure begins now!</p>
+        </div>
+        <div class="page" id="page3" style="display:none;">
+            <h1>Claim Your Gift!</h1>
+            <form action="http://127.0.0.1:8089/gift/give" method="POST">
+                <input type="text" name="giftCode" placeholder="Enter your gift code" required>
+                <button type="submit">Claim Gift</button>
+            </form>
+        </div>
+        <div class="page" id="page4" style="display:none;">
+            <h1>Your Surprise is on the Way!</h1>
+            <p>Check your mailbox, something special is coming!</p>
+        </div>
+        <button id="nextButton">&#x25BC;</button>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+        document.getElementById('nextButton').addEventListener('click', () => {
+            pages[currentPage].style.display = 'none';
+            currentPage = (currentPage + 1) % pages.length;
+            pages[currentPage].style.display = 'block';
+        });
+    </script>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #61dafb;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .cool-text { 
+            animation: pulse 1s infinite; 
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1);
+            }
+        }
+    </style>
+</body>
+</html>
