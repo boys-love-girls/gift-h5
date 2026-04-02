@@ -1,64 +1,579 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valorant Themed Birthday Greeting</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <title>生日祝福 - Valorant Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff88;
+            overflow: hidden;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            animation: pageIn 0.8s ease-out;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PAGE 1 - 生日快乐 */
+        #page1 {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #0a0e27 100%);
+        }
+
+        #page1::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 4s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 60px rgba(0, 255, 136, 0.3);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 0 100px rgba(0, 255, 136, 0.5);
+            }
+        }
+
+        #page1 h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            z-index: 10;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.8),
+                        0 0 40px rgba(0, 255, 136, 0.4),
+                        0 0 60px rgba(255, 0, 200, 0.2);
+            animation: glow-pulse 2s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.8),
+                            0 0 40px rgba(0, 255, 136, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 1),
+                            0 0 60px rgba(0, 255, 136, 0.6),
+                            0 0 90px rgba(255, 0, 200, 0.4);
+            }
+        }
+
+        #page1 p {
+            font-size: 1.5rem;
+            z-index: 10;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PAGE 2 - 寄语 */
+        #page2 {
+            background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #0a0e27 100%);
+        }
+
+        #page2::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 0, 200, 0.1) 50%, transparent 70%);
+            animation: rotate 8s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        #page2 h1 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            z-index: 10;
+            color: #ff00ff;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            letter-spacing: 3px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cool-text {
+            font-size: 1.8rem;
+            margin: 30px 0;
+            z-index: 10;
+            padding: 20px 40px;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #ff00ff, #00ffff) 1;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cool-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 200, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .cool-text:nth-child(2) {
+            animation: slideInLeft 0.8s ease-out, float 3s ease-in-out infinite;
+        }
+
+        .cool-text:nth-child(3) {
+            animation: slideInRight 0.8s ease-out 0.2s both, float 3s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* PAGE 3 - 礼物领取 */
+        #page3 {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a3a52 50%, #2d1b52 100%);
+        }
+
+        #page3::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 200, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 3s ease-in-out infinite;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #page3 h1 {
+            font-size: 3.5rem;
+            margin-bottom: 50px;
+            z-index: 10;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #0099ff;
+            letter-spacing: 2px;
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            }
+            50% {
+                text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #0099ff;
+            }
+        }
+
+        .gift-form {
+            z-index: 10;
+            padding: 40px;
+            border: 3px solid #00ffff;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 150, 255, 0.1));
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3),
+                       inset 0 0 30px rgba(0, 255, 255, 0.1);
+            position: relative;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gift-form input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .gift-form input::placeholder {
+            color: rgba(0, 255, 255, 0.5);
+        }
+
+        .gift-form input:focus {
+            outline: none;
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .gift-form button {
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00ffff, #0099ff);
+            color: #000;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: buttonShine 0.6s infinite;
+        }
+
+        @keyframes buttonShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .gift-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8),
+                       0 0 60px rgba(0, 200, 255, 0.4);
+        }
+
+        /* PAGE 4 - 惊喜在路上 */
+        #page4 {
+            background: linear-gradient(135deg, #1a0033 0%, #0a0e27 50%, #001a4d 100%);
+        }
+
+        #page4::before {
+            content: '';
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: 
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg 10deg,
+                    rgba(255, 0, 150, 0.1) 10deg 20deg
+                );
+            animation: rotate 12s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #page4 h1 {
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            z-index: 10;
+            background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            animation: gradientShift 3s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+                -webkit-background-clip: text;
+            }
+            50% {
+                background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
+                -webkit-background-clip: text;
+            }
+        }
+
+        #page4 p {
+            font-size: 1.8rem;
+            z-index: 10;
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+            margin: 20px 0;
+            animation: fadeInUp 1s ease-out 0.3s both, pulse-text 2s ease-in-out infinite 0.8s;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 25px rgba(0, 255, 136, 1);
+            }
+        }
+
+        /* 下箭头按钮 */
+        #nextButton {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00ffff, #00ff88);
+            border: none;
+            border-radius: 50%;
+            font-size: 2rem;
+            color: #000;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        #nextButton:hover {
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 40px rgba(0, 255, 200, 1),
+                       0 0 60px rgba(0, 255, 255, 0.6);
+        }
+
+        #nextButton:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        /* 角色装饰 */
+        .character {
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        #page1 .character {
+            right: 5%;
+            top: 10%;
+            animation: float 4s ease-in-out infinite, glow-character 2s ease-in-out infinite;
+        }
+
+        #page2 .character {
+            left: 5%;
+            bottom: 10%;
+            animation: float 4s ease-in-out infinite 0.5s;
+        }
+
+        #page3 .character {
+            right: 8%;
+            top: 20%;
+            animation: float 4s ease-in-out infinite 1s;
+        }
+
+        #page4 .character {
+            left: 10%;
+            top: 15%;
+            animation: float 4s ease-in-out infinite 0.3s;
+        }
+
+        @keyframes glow-character {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 40px rgba(0, 255, 200, 0.6);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            #page1 h1 {
+                font-size: 2.5rem;
+            }
+            
+            #page2 h1 {
+                font-size: 2rem;
+            }
+            
+            .cool-text {
+                font-size: 1.3rem;
+                padding: 15px 25px;
+            }
+            
+            #page3 h1 {
+                font-size: 2.5rem;
+            }
+            
+            #page4 h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
+        <!-- PAGE 1 - 生日快乐 -->
         <div class="page" id="page1">
-            <h1>Happy Birthday!</h1>
-            <p>Wishing you a day filled with love, joy, and amazing surprises!</p>
+            <div class="character">🎮</div>
+            <h1>生日快乐!</h1>
+            <p>祝你生日快乐，快乐每一天！</p>
         </div>
+
+        <!-- PAGE 2 - 寄语 -->
         <div class="page" id="page2" style="display:none;">
-            <h1>Cool Messages</h1>
-            <p class="cool-text">You are a champion, keep shining!</p>
-            <p class="cool-text">Your adventure begins now!</p>
+            <div class="character">🎯</div>
+            <h1>给你的寄语</h1>
+            <p class="cool-text">你是我们的Champion！永远闪闪发光！</p>
+            <p class="cool-text">每一天都是新的冒险，去创造属于你的传奇！</p>
         </div>
+
+        <!-- PAGE 3 - 礼物领取 -->
         <div class="page" id="page3" style="display:none;">
-            <h1>Claim Your Gift!</h1>
-            <form action="http://127.0.0.1:8089/gift/give" method="POST">
-                <input type="text" name="giftCode" placeholder="Enter your gift code" required>
-                <button type="submit">Claim Gift</button>
+            <div class="character">🎁</div>
+            <h1>领取惊喜</h1>
+            <form class="gift-form" action="http://127.0.0.1:8089/gift/give" method="POST">
+                <input type="text" name="name" placeholder="请输入你的名字" required>
+                <button type="submit">点击领取惊喜 ⚡</button>
             </form>
         </div>
+
+        <!-- PAGE 4 - 惊喜在路上 -->
         <div class="page" id="page4" style="display:none;">
-            <h1>Your Surprise is on the Way!</h1>
-            <p>Check your mailbox, something special is coming!</p>
+            <div class="character">🚀</div>
+            <h1>惊喜在路上了</h1>
+            <p>你的特殊礼物正在飞向你！</p>
+            <p>感谢你的每一个灿烂时刻！</p>
         </div>
-        <button id="nextButton">&#x25BC;</button>
+
+        <!-- 下箭头按钮 -->
+        <button id="nextButton">▼</button>
     </div>
 
     <script>
         const pages = document.querySelectorAll('.page');
         let currentPage = 0;
+
         document.getElementById('nextButton').addEventListener('click', () => {
             pages[currentPage].style.display = 'none';
             currentPage = (currentPage + 1) % pages.length;
-            pages[currentPage].style.display = 'block';
+            pages[currentPage].style.display = 'flex';
         });
+
+        // 页面加载时显示第一页
+        pages[0].style.display = 'flex';
     </script>
-    <style>
-        body { 
-            font-family: 'Arial', sans-serif;
-            background-color: #282c34;
-            color: #61dafb;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .cool-text { 
-            animation: pulse 1s infinite; 
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1);
-            }
-        }
-    </style>
 </body>
 </html>
