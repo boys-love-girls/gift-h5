@@ -13,11 +13,33 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
             color: #00ff88;
             overflow: hidden;
             height: 100vh;
             perspective: 1000px;
+            position: relative;
+        }
+
+        video#bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            z-index: 1;
         }
 
         .container {
@@ -27,6 +49,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 10;
         }
 
         .page {
@@ -54,7 +77,7 @@
 
         /* PAGE 1 - 生日快乐 */
         #page1 {
-            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #0a0e27 100%);
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.8) 0%, rgba(22, 33, 62, 0.8) 50%, rgba(10, 14, 39, 0.8) 100%);
         }
 
         #page1::before {
@@ -87,8 +110,8 @@
             margin-bottom: 20px;
             z-index: 10;
             text-shadow: 0 0 20px rgba(0, 255, 136, 0.8),
-                        0 0 40px rgba(0, 255, 136, 0.4),
-                        0 0 60px rgba(255, 0, 200, 0.2);
+            0 0 40px rgba(0, 255, 136, 0.4),
+            0 0 60px rgba(255, 0, 200, 0.2);
             animation: glow-pulse 2s ease-in-out infinite;
             letter-spacing: 3px;
         }
@@ -96,12 +119,12 @@
         @keyframes glow-pulse {
             0%, 100% {
                 text-shadow: 0 0 20px rgba(0, 255, 136, 0.8),
-                            0 0 40px rgba(0, 255, 136, 0.4);
+                0 0 40px rgba(0, 255, 136, 0.4);
             }
             50% {
                 text-shadow: 0 0 30px rgba(0, 255, 136, 1),
-                            0 0 60px rgba(0, 255, 136, 0.6),
-                            0 0 90px rgba(255, 0, 200, 0.4);
+                0 0 60px rgba(0, 255, 136, 0.6),
+                0 0 90px rgba(255, 0, 200, 0.4);
             }
         }
 
@@ -126,7 +149,7 @@
 
         /* PAGE 2 - 寄语 */
         #page2 {
-            background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #0a0e27 100%);
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.8) 0%, rgba(45, 0, 82, 0.8) 50%, rgba(10, 14, 39, 0.8) 100%);
         }
 
         #page2::before {
@@ -134,8 +157,8 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(255, 0, 200, 0.1) 50%, transparent 70%);
+            background:
+                    linear-gradient(45deg, transparent 30%, rgba(255, 0, 200, 0.1) 50%, transparent 70%);
             animation: rotate 8s linear infinite;
             top: 50%;
             left: 50%;
@@ -233,7 +256,7 @@
 
         /* PAGE 3 - 礼物领取 */
         #page3 {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a3a52 50%, #2d1b52 100%);
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 58, 82, 0.8) 50%, rgba(45, 27, 82, 0.8) 100%);
         }
 
         #page3::after {
@@ -274,7 +297,7 @@
             border: 3px solid #00ffff;
             background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 150, 255, 0.1));
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.3),
-                       inset 0 0 30px rgba(0, 255, 255, 0.1);
+            inset 0 0 30px rgba(0, 255, 255, 0.1);
             position: relative;
             animation: slideUp 0.8s ease-out;
         }
@@ -349,12 +372,12 @@
         .gift-form button:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.8),
-                       0 0 60px rgba(0, 200, 255, 0.4);
+            0 0 60px rgba(0, 200, 255, 0.4);
         }
 
         /* PAGE 4 - 惊喜在路上 */
         #page4 {
-            background: linear-gradient(135deg, #1a0033 0%, #0a0e27 50%, #001a4d 100%);
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.8) 0%, rgba(10, 14, 39, 0.8) 50%, rgba(0, 26, 77, 0.8) 100%);
         }
 
         #page4::before {
@@ -362,12 +385,12 @@
             position: absolute;
             width: 1000px;
             height: 1000px;
-            background: 
-                repeating-conic-gradient(
-                    from 0deg,
-                    transparent 0deg 10deg,
-                    rgba(255, 0, 150, 0.1) 10deg 20deg
-                );
+            background:
+                    repeating-conic-gradient(
+                            from 0deg,
+                            transparent 0deg 10deg,
+                            rgba(255, 0, 150, 0.1) 10deg 20deg
+                    );
             animation: rotate 12s linear infinite;
             top: 50%;
             left: 50%;
@@ -450,7 +473,7 @@
         #nextButton:hover {
             transform: translateX(-50%) scale(1.2);
             box-shadow: 0 0 40px rgba(0, 255, 200, 1),
-                       0 0 60px rgba(0, 255, 255, 0.6);
+            0 0 60px rgba(0, 255, 255, 0.6);
         }
 
         #nextButton:active {
@@ -503,20 +526,20 @@
             #page1 h1 {
                 font-size: 2.5rem;
             }
-            
+
             #page2 h1 {
                 font-size: 2rem;
             }
-            
+
             .cool-text {
                 font-size: 1.3rem;
                 padding: 15px 25px;
             }
-            
+
             #page3 h1 {
                 font-size: 2.5rem;
             }
-            
+
             #page4 h1 {
                 font-size: 2.5rem;
             }
@@ -524,56 +547,60 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- PAGE 1 - 生日快乐 -->
-        <div class="page" id="page1">
-            <div class="character">🎮</div>
-            <h1>生日快乐!</h1>
-            <p>祝你生日快乐，快乐每一天！</p>
-        </div>
+<video id="bgVideo" autoplay muted loop>
+    <source src="jiefeng.mp4" type="video/mp4">
+</video>
 
-        <!-- PAGE 2 - 寄语 -->
-        <div class="page" id="page2" style="display:none;">
-            <div class="character">🎯</div>
-            <h1>给你的寄语</h1>
-            <p class="cool-text">你是我们的Champion！永远闪闪发光！</p>
-            <p class="cool-text">每一天都是新的冒险，去创造属于你的传奇！</p>
-        </div>
-
-        <!-- PAGE 3 - 礼物领取 -->
-        <div class="page" id="page3" style="display:none;">
-            <div class="character">🎁</div>
-            <h1>领取惊喜</h1>
-            <form class="gift-form" action="http://127.0.0.1:8089/gift/give" method="POST">
-                <input type="text" name="name" placeholder="请输入你的名字" required>
-                <button type="submit">点击领取惊喜 ⚡</button>
-            </form>
-        </div>
-
-        <!-- PAGE 4 - 惊喜在路上 -->
-        <div class="page" id="page4" style="display:none;">
-            <div class="character">🚀</div>
-            <h1>惊喜在路上了</h1>
-            <p>你的特殊礼物正在飞向你！</p>
-            <p>感谢你的每一个灿烂时刻！</p>
-        </div>
-
-        <!-- 下箭头按钮 -->
-        <button id="nextButton">▼</button>
+<div class="container">
+    <!-- PAGE 1 - 生日快乐 -->
+    <div class="page" id="page1">
+        <div class="character">🎮</div>
+        <h1>生日快乐!</h1>
+        <p>祝你生日快乐，快乐每一天！</p>
     </div>
 
-    <script>
-        const pages = document.querySelectorAll('.page');
-        let currentPage = 0;
+    <!-- PAGE 2 - 寄语 -->
+    <div class="page" id="page2" style="display:none;">
+        <div class="character">🎯</div>
+        <h1>给你的寄语</h1>
+        <p class="cool-text">你是我们的Champion！永远闪闪发光！</p>
+        <p class="cool-text">每一天都是新的冒险，去创造属于你的传奇！</p>
+    </div>
 
-        document.getElementById('nextButton').addEventListener('click', () => {
-            pages[currentPage].style.display = 'none';
-            currentPage = (currentPage + 1) % pages.length;
-            pages[currentPage].style.display = 'flex';
-        });
+    <!-- PAGE 3 - 礼物领取 -->
+    <div class="page" id="page3" style="display:none;">
+        <div class="character">🎁</div>
+        <h1>领取惊喜</h1>
+        <form class="gift-form" action="http://127.0.0.1:8089/gift/give" method="POST">
+            <input type="text" name="name" placeholder="请输入你的名字" required>
+            <button type="submit">点击领取惊喜 ⚡</button>
+        </form>
+    </div>
 
-        // 页面加载时显示第一页
-        pages[0].style.display = 'flex';
-    </script>
+    <!-- PAGE 4 - 惊喜在路上 -->
+    <div class="page" id="page4" style="display:none;">
+        <div class="character">🚀</div>
+        <h1>惊喜在路上了</h1>
+        <p>你的特殊礼物正在飞向你！</p>
+        <p>感谢你的每一个灿烂时刻！</p>
+    </div>
+
+    <!-- 下箭头按钮 -->
+    <button id="nextButton">▼</button>
+</div>
+
+<script>
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+
+    document.getElementById('nextButton').addEventListener('click', () => {
+        pages[currentPage].style.display = 'none';
+        currentPage = (currentPage + 1) % pages.length;
+        pages[currentPage].style.display = 'flex';
+    });
+
+    // 页面加载时显示第一页
+    pages[0].style.display = 'flex';
+</script>
 </body>
 </html>
