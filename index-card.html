@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐，椰子！</title>
+    <style>
+        /* 全局样式重置 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* 背景动态渐变 */
+        .bg-anim {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 贺卡主体 */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            width: 85%;
+            max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* 头像区域 */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 文字样式 */
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .highlight {
+            color: #ff9a9e;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            background: linear-gradient(to right, #ff9a9e, #fecfef);
+            border: none;
+            padding: 12px 30px;
+            color: #fff;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4);
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 装饰动画元素 */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            background: red;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatUp 6s linear infinite;
+            z-index: -1;
+        }
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 蛋糕Emoji动画 */
+        .cake-emoji {
+            font-size: 60px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 背景层 -->
+<div class="bg-anim"></div>
+
+<!-- 贺卡内容 -->
+<div class="card">
+    <!-- 这里可以放寿星的照片，如果没有照片，可以用一个可爱的头像链接 -->
+    <div class="avatar">
+        <!-- 这是一个示例头像，你可以把src里的链接换成寿星的照片 -->
+        <img src="https://api.dicebear.com/9.x/toon-head/svg?seed=Mason" alt="avatar" />
+    </div>
+
+    <div class="cake-emoji">🎂</div>
+
+    <h1>Happy Birthday<br><span class="highlight">椰子！</span></h1>
+
+    <p>
+        祝你吃好喝好睡好<br>
+        吃得尽兴，每一口都是喜欢的味道<br>
+        喝得畅快，每一杯都藏着自在的心情<br>
+        <br>
+        <strong>小马</strong>
+    </p>
+
+    <button class="btn" onclick="celebrate()">点击接收祝福 🎉</button>
+</div>
+
+<!-- 脚本逻辑 -->
+<script>
+    // 1. 自动生成漂浮的气球背景
+    function createBalloons() {
+        const colors = ['#ff9a9e', '#a18cd1', '#84fab0', '#fecfef'];
+        const container = document.body;
+
+        setInterval(() => {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            // 随机位置
+            balloon.style.left = Math.random() * 100 + 'vw';
+            // 随机颜色
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            // 随机大小
+            const scale = Math.random() * 0.5 + 0.5;
+            balloon.style.transform = `scale(${scale})`;
+            // 随机动画时长
+            balloon.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+            container.appendChild(balloon);
+
+            // 动画结束后移除元素，防止内存溢出
+            setTimeout(() => {
+                balloon.remove();
+            }, 7000);
+        }, 300);
+    }
+
+    // 2. 点击按钮的庆祝特效（简单的五彩纸屑）
+    function celebrate() {
+        const btn = document.querySelector('.btn');
+        btn.innerHTML = "生日快乐！✨";
+
+        for(let i=0; i<30; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'absolute';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = ['#ff0', '#f00', '#0f0', '#00f'][Math.floor(Math.random()*4)];
+            confetti.style.left = '50%';
+            confetti.style.top = '50%';
+            confetti.style.borderRadius = '50%';
+            confetti.style.zIndex = '999';
+            document.body.appendChild(confetti);
+
+            // 简单的抛物线动画
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 200 + 100;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+
+            confetti.animate([
+                { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0, .9, .57, 1)',
+            }).onfinish = () => confetti.remove();
+        }
+    }
+
+    // 启动背景动画
+    createBalloons();
+</script>
+</body>
+</html>
