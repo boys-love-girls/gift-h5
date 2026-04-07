@@ -1034,6 +1034,9 @@
             祝你吃好喝好睡好<br>
             吃得尽兴，每一口都是喜欢的味道<br>
             喝得畅快，每一杯都藏着自在的心情
+            <br>
+            <br>
+            <strong>🦄 小马</strong>
         </p>
         <button class="intro-btn" id="enterBlessingButton" type="button">戳我获取祝福~~~ 🎉</button>
     </div>
@@ -1341,9 +1344,10 @@
     }, { passive: false });
 
     document.addEventListener('touchend', (e) => {
-        if (e.target.id !== 'nextButton' && e.target.id !== 'giftButton') {
-            e.preventDefault();
+        if (e.target.tagName === 'BUTTON') {
+            return;
         }
+        e.preventDefault();
     }, { passive: false });
 
     // 初始化 - 页面进入时触发烟花掉落
